@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking</title>
+    <style>
+        body {
+            background: #000;
+            color: green;
+            font-weight: bold;
+        }
+
+        h2 {
+            text-align: center;
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        #box {
+            display: flex;
+            flex-direction: column;
+            gap: 1vw;
+        }
+        .fh{
+            color: red;
+            font-size: 8vw;
+        }
+        .flx{
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>
+        Your device is Hacking
+    </h2>
+    <div id="box"></div>
+</body>
+<script>
+    let arr = [
+        "Initializing hacking",
+        "Scanning your files",
+        "Destroying firewall",
+        "Cracking password",
+        "Reading and sending your data",
+        "Cleaning up data"
+    ];
+    let narr = [
+        "Initialized hacking",
+        "Scanned files",
+        "Destroyed firewall",
+        "Cracked password",
+        "transfered your data",
+        "Cleaned up data"
+    ];
+    let a = 0;
+    function delay(t) {
+        return new Promise(resolve => setTimeout(resolve, t));
+    }
+    async function main(array, newArr) {
+        let b = document.getElementById("box");
+        for (const i of array) {
+            let ran = Math.round(1000 + 10000 * Math.random());
+            let l = document.createElement("div");
+            l.innerHTML = i;
+            b.appendChild(l);
+            let interval = setInterval(() => {
+                let last = l.innerHTML;
+                if (last.endsWith("...")) {
+                    l.innerHTML = i;
+                } else {
+                    l.innerHTML += ".";
+                }
+            }, 100);
+            await delay(ran);
+            clearInterval(interval);
+            l.innerHTML = narr[a]; // Reset last to remove dots
+            a = a + 1;
+        }
+        document.querySelectorAll("h2").forEach(h => {
+            h.innerText = "Your device is Hacked"
+            h.classList.add("fh");
+        });
+        b.innerHTML = ""
+        document.body.classList.add("flx");
+    }
+    main(arr, narr);
+</script>
+<script src="jin.js"></script>
+</html>
